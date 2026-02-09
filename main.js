@@ -18,3 +18,22 @@ loginButton.addEventListener("click", () => {
         localStorage.setItem('userId', data.user.id);
     });
 });
+
+const boutonRegister = document.getElementById("register");
+const myInput = document.getElementById("rlogin");
+const myInput2 = document.getElementById("rpassword");
+const myInput3 = document.getElementById("remail");
+
+boutonRegister.addEventListener("click", () => {
+    fetch('/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ login: myInput.value, password: myInput2.value, email: myInput3.value })
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data);
+    });
+});
