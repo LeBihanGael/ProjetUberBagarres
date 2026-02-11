@@ -1,7 +1,35 @@
-const loginButton = document.getElementById("loginbutton");
+// Ouvrir les modals
+document.getElementById("btn-login").onclick = () => {
+    document.getElementById("login-modal").style.display = "flex";
+};
+
+document.getElementById("btn-register").onclick = () => {
+    document.getElementById("register-modal").style.display = "flex";
+};
+
+// Fermer les modals
+document.querySelectorAll(".close").forEach(btn => {
+    btn.onclick = () => {
+        document.getElementById(btn.dataset.close).style.display = "none";
+    };
+});
+
+// Fermer en cliquant en dehors
+window.onclick = (e) => {
+    if (e.target.classList.contains("modal")) {
+        e.target.style.display = "none";
+    }
+};
+
+
+
+
+
+
+const loginButton = document.getElementById("loginpop");
 
 loginButton.addEventListener("click", () => {
-    const loginInput = document.getElementById("login").value;
+    const loginInput = document.getElementById("login-iden").value;
     const passwordInput = document.getElementById("password").value;
 
     fetch('/connexion', {
@@ -19,10 +47,10 @@ loginButton.addEventListener("click", () => {
     });
 });
 
-const boutonRegister = document.getElementById("register");
-const myInput = document.getElementById("rlogin");
-const myInput2 = document.getElementById("rpassword");
-const myInput3 = document.getElementById("remail");
+const boutonRegister = document.getElementById("registerpop");
+const myInput = document.getElementById("nameregis");
+const myInput2 = document.getElementById("passwordregis");
+const myInput3 = document.getElementById("emailregis");
 
 boutonRegister.addEventListener("click", () => {
     fetch('/register', {

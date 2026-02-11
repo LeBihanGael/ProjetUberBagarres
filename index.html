@@ -1,31 +1,32 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UberBagarre | Bienvenue</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main.css">
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
 </head>
 <body>
 
     <header class="main-header">
         <div class="header-left">
             <div class="logo-container">
-                <img src="image/téléchargement.jpg" alt="logo" class="brand-logo">
+                <img src="image/unnamed (3).jpg" alt="logo" class="brand-logo">
+                <div class="brand-logo-placeholder"></div>
             </div>
             <h1 class="brand-title">UberBagarre</h1>
         </div>
 
         <div class="header-right">
-            <a href="login.html" class="nav-link">Connexion</a>
-            <a href="register.html" class="btn-premium">S'inscrire</a>
+            <button id="btn-login" class="nav-link">Connexion</button>
+            <button id="btn-register" class="btn-premium">S'inscrire</button>
         </div>
     </header>
 
     <main class="hero-section">
         <div class="content-wrapper">
-            <span class="top-label">Sercice premium pour vos problèmes</span>
+            <span class="top-label">Service premium pour vos problèmes</span>
             <h2 class="main-slogan">
                 Besoin de bras pour vos problèmes ? <br> 
                 <span class="italic-style">Vous êtes chez vous.</span>
@@ -43,5 +44,40 @@
         <p>&copy; 2026 UberBagarre. Tous droits réservés.</p>
     </footer>
 
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-close="login-modal">&times;</span>
+            <h2>Connexion</h2>
+            <form>
+                <label>Identifiant</label>
+                <input id="login-iden" type="text" required>
+
+                <label>Mot de passe</label>
+                <input id="password" type="password" required>
+
+                <button type="submit" class="btn-premium" id="loginpop">Se connecter</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-close="register-modal">&times;</span>
+            <h2>Inscription</h2>
+            <form>
+                <label>Nom</label>
+                <input id="nameregis" type="text" required>
+
+                <label>Email</label>
+                <input id="emailregis" type="email" required>
+
+                <label>Mot de passe</label>
+                <input id="passwordregis" type="password" required>
+
+                <button type="submit" class="btn-premium" id="registerpop">Créer un compte</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
 </body>
-</html>
