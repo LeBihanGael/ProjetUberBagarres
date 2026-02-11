@@ -1,215 +1,212 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap');
-
+/* --- Variables de Prestige --- */
 :root {
-    --primary-gold: #D4AF37;   
-    --dark-gold: #996515;      
-    --deep-black: #0a0a0a;     
-    --soft-black: #1a1a1a;     
-    --text-light: #f4f4f4;
+    --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+    --gold-solid: #D4AF37;
+    --deep-black: #0a0a0a;
+    --soft-black: #151515;
+    --text-gray: #a0a0a0;
 }
 
+/* --- Base & Reset --- */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Crucial pour que les champs ne dépassent pas */
+    box-sizing: border-box;
 }
 
 body {
     background-color: var(--deep-black);
-    color: var(--text-light);
-    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    overflow-x: hidden;
 }
 
-/* --- Header --- */
+/* --- Header & Logo --- */
 .main-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 5%;
-    position: absolute;
-    width: 100%;
-    z-index: 10;
+    padding: 1.5rem 5%;
+    background: rgba(0, 0, 0, 0.9);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    position: fixed;
+    top: 0; width: 100%; z-index: 1000;
 }
 
 .header-left {
     display: flex;
     align-items: center;
-    gap: 15px; /* Espace entre logo et texte */
+    gap: 15px;
 }
 
-/* Emplacement du logo */
 .brand-logo {
-    width: 45px;
-    height: 45px;
-    background: var(--primary-gold); /* En attendant ton image */
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid var(--gold-solid);
 }
 
 .brand-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
+    background: var(--gold-gradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
     letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--primary-gold);
-}
-
-/* --- Boutons --- */
-.btn-premium {
-    background: linear-gradient(45deg, var(--dark-gold), var(--primary-gold));
-    color: black;
-    border: none;
-    padding: 12px 28px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    border-radius: 12px;
-    display: inline-block;
-}
-
-/* Bouton RDV Agrandi et Abaissé */
-.btn-premium.large {
-    margin-top: 60px; 
-    padding: 22px 60px;
-    font-size: 1.2rem;
-    letter-spacing: 3px;
-}
-
-.btn-premium:hover {
-    filter: brightness(1.2);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
-}
-
-.nav-link {
-    background: transparent;
-    color: var(--primary-gold);
-    border: none;
-    margin-right: 25px;
-    cursor: pointer;
-    font-weight: 600;
-    text-transform: uppercase;
 }
 
 /* --- Hero Section --- */
 .hero-section {
     height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     text-align: center;
-    background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+    padding-top: 80px;
+}
+
+.top-label {
+    color: var(--gold-solid);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
 .main-slogan {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    margin-bottom: 20px;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin: 20px 0;
+    color: #fff;
 }
 
 .italic-style {
     font-style: italic;
-    color: var(--primary-gold);
+    background: var(--gold-gradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .divider {
-    width: 80px;
-    height: 1px;
-    background: var(--primary-gold);
-    margin: 40px auto;
+    width: 60px;
+    height: 2px;
+    background: var(--gold-gradient);
+    margin: 30px auto;
 }
 
-/* --- Popups (Modals) --- */
-.modal {
-    display: none; 
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
-    align-items: center; /* Centrage vertical */
-    justify-content: center; /* Centrage horizontal */
+.description {
+    color: var(--text-gray);
+    max-width: 600px;
+    margin: 0 auto 40px;
 }
 
-.modal.active {
-    display: flex; /* Activé par le JS */
+/* --- Boutons --- */
+.btn-premium {
+    background: var(--gold-gradient);
+    color: #000;
+    border: none;
+    padding: 12px 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
 }
 
-.modal-content {
-    background-color: var(--soft-black);
-    padding: 50px 40px;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    width: 90%;
-    border-radius: 25px; /* Arrondi des coins */
-    box-shadow: 0 30px 60px rgba(0,0,0,0.7);
-    position: relative;
+.btn-premium.large {
+    padding: 20px 45px;
+    font-size: 1.1rem;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
 }
 
-/* Connexion plus petite que Inscription */
-#login-modal .modal-content { max-width: 360px; }
-#register-modal .modal-content { max-width: 420px; }
-
-.modal-content h2 {
-    font-family: 'Playfair Display', serif;
-    color: var(--primary-gold);
-    margin-bottom: 35px;
-    text-align: center;
-    font-size: 2rem;
+.btn-premium:hover {
+    filter: brightness(1.1);
+    transform: translateY(-3px);
 }
 
-/* --- Formulaires (Correction Alignement) --- */
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 0.9rem;
-    color: var(--primary-gold);
-    text-align: left;
-}
-
-input {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid #333;
-    padding: 15px;
-    margin-bottom: 25px; /* Espace vertical propre */
+.nav-link {
+    background: none;
+    border: none;
     color: white;
-    outline: none;
-    border-radius: 12px;
+    margin-right: 20px;
+    cursor: pointer;
+    font-weight: 600;
     transition: 0.3s;
 }
 
-input:focus {
-    border-color: var(--primary-gold);
-    background: rgba(255, 255, 255, 0.07);
+.nav-link:hover {
+    color: var(--gold-solid);
+}
+
+/* --- Modales --- */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--soft-black);
+    padding: 40px;
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    position: relative;
+    text-align: center;
+}
+
+.modal-content h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-solid);
+    margin-bottom: 30px;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.modal-content label {
+    color: var(--gold-solid);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.modal-content input {
+    background: #222;
+    border: 1px solid #333;
+    padding: 12px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.modal-content input:focus {
+    border-color: var(--gold-solid);
+    outline: none;
 }
 
 .close {
     position: absolute;
-    right: 25px;
-    top: 20px;
-    color: var(--primary-gold);
-    font-size: 30px;
+    right: 20px; top: 15px;
+    color: var(--gold-solid);
+    font-size: 1.5rem;
     cursor: pointer;
-    line-height: 1;
 }
 
 /* --- Footer --- */
 .main-footer {
     padding: 30px;
     text-align: center;
-    font-size: 0.8rem;
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
     color: #444;
+    font-size: 0.8rem;
 }

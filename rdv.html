@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prise de rendez-vous</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="rdv.css">
     <meta name="description" content="Page de prise de rendez-vous">
 </head>
 <body>
@@ -13,14 +13,13 @@
     <header class="main-header">
         <div class="header-left">
             <div class="logo-container">
-                <img src="image/unnamed (2).jpg" alt="logo" class="brand-logo">
+                <img src="image/unnamed (3).jpg" alt="logo" class="brand-logo">
             </div>
-            <h1 class="brand-title">UberBagarre</h1>
+            <h1 class="brand-title">Sans Octogone</h1>
         </div>
 
         <div class="header-right">
             <a href="index.html" class="nav-link">Accueil</a>
-            <a href="login.html" class="nav-link">Connexion</a>
         </div>
     </header>
 
@@ -40,7 +39,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="time">Heure</label>
-                        <input type="time" id="time" name="time">
+                        <input type="time" id="time" name="time" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -48,25 +47,19 @@
                         <input type="text" id="lieu" name="lieu" placeholder="Lieu du rendez-vous" required>
                     </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Nom</label>
-                        <input type="text" id="name" name="name" placeholder="Votre nom" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="surname">Prénom</label>
-                        <input type="text" id="surname" name="surname" placeholder="Votre prénom" required>
-                    </div>
+                <div class="form-group">
+                    <label for="pseudo">Pseudo</label>
+                    <input type="text" id="pseudo" name="pseudo" placeholder="Votre pseudo" required>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="vous@exemple.com">
+                    <input type="email" id="email" name="email" placeholder="vous@exemple.com" required>
                 </div>
 
 
                 <div class="form-actions">
-                    <button type="submit" class="btn-submit">Confirmer</button>
+                    <button type="submit" class="btn-submit" id="confirmrdv">Confirmer</button>
                     <a href="index.html" class="nav-link">Retour</a>
                 </div>
             </form>
