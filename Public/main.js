@@ -66,7 +66,7 @@ boutonRegister.addEventListener("click", () => {
         },
         body: JSON.stringify({ login: myInput.value, password: myInput2.value, email: myInput3.value, age: myInput4.value })
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
         alert(data);
     });
