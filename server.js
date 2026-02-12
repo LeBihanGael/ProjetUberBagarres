@@ -46,7 +46,7 @@ app.get('/users', (req, res) => {
 app.post('/register', (req, res) => {
     const { login, email, password, age } = req.body;
     connection.query(
-        'INSERT INTO utilisateur (pseudo, email, password, age) VALUES (?, ?)',
+        'INSERT INTO utilisateur (pseudo, email, password, age) VALUES (?, ?,?, ?)',
         [ login,email, password ,age],
         (err, results) => {
             if (err) {
