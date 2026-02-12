@@ -54,7 +54,8 @@ app.post('/register', (req, res) => {
                 res.status(500).json({ message: 'Erreur serveur' });
                 return;
             }
-            res.json({ message: 'Inscription réussie !', id_user: results.insertId });
+            console.log({ message: 'Inscription réussie !', id_user: results.insertId });
+            alert("Inscription réussie ! ID utilisateur : " + results.insertId);
         }
     );
 });
