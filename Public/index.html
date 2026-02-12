@@ -85,13 +85,12 @@
 
 
     <div id="afficherrdv-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" data-close="afficherrdv-modal">&times;</span>
-            <h2>Rendez-vous</h2>
-            <button id="voirrdv">Voir RDV</button>
-            <div id="rdv-list">
-                <p>Aucun rendez-vous pour le moment.</p>
-            </div>
+        <button id="voirrdv">Voir le rendez-vous</button>
+
+        <div id="popup" style="display:none; border: 1px solid #ccc; padding: 20px;">
+        <h3>Détails du RDV</h3>
+        <ul id="rdv-list"></ul>
+        <button onclick="document.getElementById('popup').style.display='none'">Fermer</button>
         </div>
     </div>
 

@@ -45,8 +45,8 @@ loginButton.addEventListener("click", () => {
     .then(response => response.json())
     .then(data => {
         alert(data.message);
-        alert("ID utilisateur : " + data.user.id);
-        localStorage.setItem('userId', data.user.id);
+        alert("ID utilisateur : " + data.utilisateur.id_user);
+        localStorage.setItem('userId', data.utilisateur.id_user);
     });
 });
 
@@ -116,16 +116,41 @@ boutonAffiche.addEventListener("click", () => {
     { const rdvList = document.getElementById("rdv-list"); 
     rdvList.innerHTML = ""; 
     data.forEach(rdv => { const listItem = document.createElement("li"); 
-    listItem.textContent = test.pseudo+ " - " + test.email + " - " + test.date + " " + test.time + " - " + test.lieu; 
+    listItem.textContent = `${rdv.pseudo} - ${rdv.email} - ${rdv.date} ${rdv.time} - ${rdv.lieu}`; 
     rdvList.appendChild(listItem); }); }) 
 .catch(error => console.error('Error fetching rendez-vous:', error));
 });
 
-const voirRdv = document.getElementById("voirrdv");
-voirRdv.addEventListener("click", () => {
-    const rdvList = document.getElementById("rdv-list");
+
+
+
+
+
+
+
+var test = {
+    pseudo: "gael",
+    email: "gael@example.com",
+    date: "2024-06-30",
+    time: "14:00",
+    lieu: "Paris"
+};
+
+const voirRdvBtn = document.getElementById("voirrdv");
+const popup = document.getElementById("popup"); // On récupère la popup
+const rdvList = document.getElementById("rdv-list");
+
+voirRdvBtn.addEventListener("click", () => {
+    // 1. On vide la liste actuelle
     rdvList.innerHTML = "";
+
+    // 2. On crée le contenu avec des "Template Literals" (plus propre que les +)
     const listItem = document.createElement("li");
-    listItem.textContent = test.pseudo + " - " + test.email + " - " + test.date + " " + test.time + " - " + test.lieu;
+    listItem.textContent = `${test.pseudo} - ${test.email} - ${test.date} ${test.time} - ${test.lieu}`;
+    
+    // 3. On ajoute à la liste
     rdvList.appendChild(listItem);
+
+    // 4. On affiche la popup (si elle était en display: none)
+    popup.style.display = "block";
 });

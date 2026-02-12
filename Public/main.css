@@ -210,3 +210,40 @@ body {
     color: #444;
     font-size: 0.8rem;
 }
+
+
+
+/* Style du conteneur de la liste */
+#rdv-list {
+    list-style: none; /* Enlève les puces */
+    padding: 0;
+    margin: 20px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Style de l'élément de liste (la carte) */
+#rdv-list li {
+    background: #f8f9fa;
+    border-left: 5px solid #007bff; /* Barre bleue décorative */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Style pour mettre en valeur les informations */
+#rdv-list li strong {
+    color: #007bff;
+    display: block; /* Met le pseudo sur sa propre ligne */
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+/* Une petite séparation pour les détails */
+.rdv-info {
+    font-size: 0.95em;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
