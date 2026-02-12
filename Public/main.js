@@ -94,3 +94,38 @@ boutonRdv.addEventListener("click", () => {
         console.log(data);
     });
 });
+
+
+var test = {
+    pseudo: "gael",
+    email: "gael@example.com",
+    date: "2024-06-30",
+    time: "14:00",
+    lieu: "Paris"
+};
+const boutonAffiche = document.getElementById("btn-afficherdv");
+boutonAffiche.addEventListener("click", () => {
+    fetch('/getrdv', {
+    method: 'GET',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+})
+.then(response => response.json()) 
+.then(data => 
+    { const rdvList = document.getElementById("rdv-list"); 
+    rdvList.innerHTML = ""; 
+    data.forEach(rdv => { const listItem = document.createElement("li"); 
+    listItem.textContent = test.pseudo+ " - " + test.email + " - " + test.date + " " + test.time + " - " + test.lieu; 
+    rdvList.appendChild(listItem); }); }) 
+.catch(error => console.error('Error fetching rendez-vous:', error));
+});
+
+const voirRdv = document.getElementById("voirrdv");
+voirRdv.addEventListener("click", () => {
+    const rdvList = document.getElementById("rdv-list");
+    rdvList.innerHTML = "";
+    const listItem = document.createElement("li");
+    listItem.textContent = test.pseudo + " - " + test.email + " - " + test.date + " " + test.time + " - " + test.lieu;
+    rdvList.appendChild(listItem);
+});
