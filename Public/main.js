@@ -70,6 +70,7 @@ boutonRegister.addEventListener("click", () => {
     .then(data => {
         alert(data);
     });
+    alert("Inscription réussie ! ID utilisateur : " + results.insertId);
 });
 
 

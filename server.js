@@ -55,7 +55,7 @@ app.post('/register', (req, res) => {
                 return;
             }
             console.log({ message: 'Inscription réussie !', id_user: results.insertId });
-            alert("Inscription réussie ! ID utilisateur : " + results.insertId);
+            
         }
     );
 });
