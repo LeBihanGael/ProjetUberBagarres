@@ -25,7 +25,7 @@ connection.connect((err) => {
     console.log('Connecté à la base de données MySQL.');
 });
 
-app.use(express.static('public')); 
+app.use(express.static('Public')); 
 app.use(express.json());
 
 
