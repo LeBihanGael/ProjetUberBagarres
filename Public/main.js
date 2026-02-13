@@ -28,31 +28,62 @@ window.onclick = (e) => {
 };
 
 
-//Js pour la connexion
-const loginButton = document.getElementById("loginpop");
+function updateUI() {
+    const userId = localStorage.getItem('userId');
+    const userPseudo = localStorage.getItem('userpseudo');
 
+    const loggedOutUI = document.getElementById("logged-out-ui");
+    const loggedInUI = document.getElementById("logged-in-ui");
+    const displayName = document.getElementById("user-display-name");
+    const inscripout = document.getElementById("btn-register");
+
+    if (userId) {
+        // Utilisateur connecté
+        loggedOutUI.style.display = "none";
+        loggedInUI.style.display = "block";
+        displayName.textContent = userPseudo;
+        inscripout.style.display = "none";
+    } else {
+        // Utilisateur déconnecté
+        loggedOutUI.style.display = "block";
+        loggedInUI.style.display = "none";
+    }
+}
+
+const loginButton = document.getElementById("loginpop");
+const boutonlog = document.getElementById("btn-login");
 loginButton.addEventListener("click", () => {
     const loginInput = document.getElementById("login-iden").value;
     const passwordInput = document.getElementById("password").value;
 
-fetch('/connexion', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ login: loginInput, password: passwordInput })
-})
-.then(response => response.json())
-.then(data => {
-    if (data.utilisateur) {
-        alert("ID utilisateur : " + data.utilisateur.id_user);
-        localStorage.setItem('userId', data.utilisateur.id_user);
-        localStorage.setItem('userpseudo', data.utilisateur.pseudo);
-    }else {
-        alert(data.message);
-    }
-})
-.catch(error => {
-    console.error('Erreur:', error);
+    fetch('/connexion', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ login: loginInput, password: passwordInput })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.utilisateur) {
+            localStorage.setItem('userId', data.utilisateur.id_user);
+            localStorage.setItem('userpseudo', data.utilisateur.pseudo);
+            boutonlog.innerHTML = "Profil";
+            updateUI();
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(error => console.error('Erreur:', error));
 });
+
+
+const logoutButton = document.getElementById("logout-btn");
+logoutButton.addEventListener("click", () => {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userpseudo');
+    
+    window.location.href = "index.html"; 
+    
+    updateUI(); 
 });
 
 

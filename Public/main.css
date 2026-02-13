@@ -247,3 +247,66 @@ body {
     flex-direction: column;
     gap: 5px;
 }
+/* --- Gestion de l'affichage Authentifié --- */
+
+/* Conteneur dans le header pour aligner les éléments */
+#auth-section {
+    display: flex;
+    align-items: center;
+}
+
+/* Style spécifique pour le message de bienvenue */
+#logged-in-ui {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    animation: fadeIn 0.5s ease; /* Petit effet d'apparition */
+}
+
+#user-display-name {
+    color: var(--gold-solid);
+    font-weight: 700;
+    text-transform: capitalize;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    padding-bottom: 2px;
+}
+
+/* Style du bouton de déconnexion (plus petit que le bouton premium classique) */
+#logout-btn {
+    padding: 8px 18px;
+    font-size: 0.8rem;
+    background: transparent;
+    border: 1px solid var(--gold-solid);
+    color: var(--gold-solid);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#logout-btn:hover {
+    background: var(--gold-gradient);
+    color: var(--deep-black);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Animation d'apparition fluide */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Ajustements Modale (Optionnel) --- */
+/* Pour s'assurer que la modale de connexion est bien centrée */
+.modal {
+    display: none; /* Changé dynamiquement en 'flex' par le JS */
+}
+
+/* Responsive : sur mobile, on réduit l'espacement */
+@media (max-width: 600px) {
+    #logged-in-ui {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-end;
+    }
+}
