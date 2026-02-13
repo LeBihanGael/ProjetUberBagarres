@@ -64,9 +64,11 @@ app.post('/register', (req, res) => {
 // ROUTE POUR LA CONNEXION
 app.post('/connexion', (req, res) => {
     const { login, password } = req.body;
-    connection.query('SELECT * FROM utilisateur WHERE login = ? AND password = ?', [login, password], (err, results) => {
+    connection.query('SELECT * FROM utilisateur WHERE pseudo = ? AND password = ?', [login, password], (err, results) => {
         if (err) {
             res.status(500).json({ message: 'Erreur serveur' });
+            console.log(err);
+            
             return;
         }
         if (results.length === 0) {
