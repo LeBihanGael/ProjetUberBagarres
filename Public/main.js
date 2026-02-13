@@ -42,11 +42,11 @@ fetch('/connexion', {
 })
 .then(response => response.json())
 .then(data => {
-    if (data.user) { 
-        alert(data.message);
-        alert("ID utilisateur : " + data.user.id_user);
-        localStorage.setItem('userId', data.user.id_user);
-    } else {
+    if (data.utilisateur) {
+        alert("ID utilisateur : " + data.utilisateur.id_user);
+        localStorage.setItem('userId', data.utilisateur.id_user);
+        localStorage.setItem('userpseudo', data.utilisateur.pseudo);
+    }else {
         alert(data.message);
     }
 })

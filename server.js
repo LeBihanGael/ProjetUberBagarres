@@ -74,9 +74,10 @@ app.post('/connexion', (req, res) => {
         if (results.length === 0) {
             return res.status(401).json({ message: 'Identifiants ou mot de passe incorrects' });
         }
+
         res.json({ 
             message: 'Connexion réussie !', 
-            user: results[0] 
+            utilisateur : results[0] 
         });
     });
 });
