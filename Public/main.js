@@ -35,19 +35,24 @@ loginButton.addEventListener("click", () => {
     const loginInput = document.getElementById("login-iden").value;
     const passwordInput = document.getElementById("password").value;
 
-    fetch('/connexion', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ login: loginInput, password: passwordInput })
-    })
-    .then(response => response.json())
-    .then(data => {
+fetch('/connexion', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ login: loginInput, password: passwordInput })
+})
+.then(response => response.json())
+.then(data => {
+    if (data.user) { 
         alert(data.message);
-        alert("ID utilisateur : " + data.utilisateur.id_user);
-        localStorage.setItem('userId', data.utilisateur.id_user);
-    });
+        alert("ID utilisateur : " + data.user.id_user);
+        localStorage.setItem('userId', data.user.id_user);
+    } else {
+        alert(data.message);
+    }
+})
+.catch(error => {
+    console.error('Erreur:', error);
+});
 });
 
 

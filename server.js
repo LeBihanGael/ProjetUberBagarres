@@ -64,22 +64,20 @@ app.post('/register', (req, res) => {
 // ROUTE POUR LA CONNEXION
 app.post('/connexion', (req, res) => {
     const { login, password } = req.body;
+    
     connection.query('SELECT * FROM utilisateur WHERE pseudo = ? AND password = ?', [login, password], (err, results) => {
         if (err) {
-            res.status(500).json({ message: 'Erreur serveur' });
             console.log(err);
-            
-            return;
+            return res.status(500).json({ message: 'Erreur serveur' });
         }
+        
         if (results.length === 0) {
-            res.status(401).json({ message: 'Identifiants invalides' });
-            return;
+            return res.status(401).json({ message: 'Identifiants ou mot de passe incorrects' });
         }
-                if(results[0].password !== password) {
-            res.status(401).json({ message: 'Mot de passe incorrect' });
-            return;
-        }
-        res.json({ message: 'Connexion réussie !', User: results[0] });
+        res.json({ 
+            message: 'Connexion réussie !', 
+            user: results[0] 
+        });
     });
 });
 
