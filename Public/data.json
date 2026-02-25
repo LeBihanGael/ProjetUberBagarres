@@ -1,0 +1,68 @@
+{
+  "1": [
+    {
+      "id": 1,
+      "pseudo": "Jean_Combat",
+      "email": "jean@example.com",
+      "date": "2026-03-15",
+      "time": "14:30",
+      "lieu": "Paris, 75001",
+      "status": "confirmé",
+      "description": "Altercation au bar"
+    },
+    {
+      "id": 2,
+      "pseudo": "Jean_Combat",
+      "email": "jean@example.com",
+      "date": "2026-03-20",
+      "time": "10:00",
+      "lieu": "Lyon, 69001",
+      "status": "en attente",
+      "description": "Problème au restaurant"
+    },
+    {
+      "id": 3,
+      "pseudo": "Jean_Combat",
+      "email": "jean@example.com",
+      "date": "2026-02-28",
+      "time": "19:00",
+      "lieu": "Marseille, 13001",
+      "status": "confirmé",
+      "description": "Conflit mineur"
+    }
+  ],
+  "2": [
+    {
+      "id": 4,
+      "pseudo": "Marc_Boxeur",
+      "email": "marc@example.com",
+      "date": "2026-03-10",
+      "time": "15:45",
+      "lieu": "Toulouse, 31000",
+      "status": "confirmé",
+      "description": "Débat animé"
+    },
+    {
+      "id": 5,
+      "pseudo": "Marc_Boxeur",
+      "email": "marc@example.com",
+      "date": "2026-03-25",
+      "time": "11:30",
+      "lieu": "Nice, 06000",
+      "status": "en attente",
+      "description": "Intervention préventive"
+    }
+  ],
+  "3": [
+    {
+      "id": 6,
+      "pseudo": "Sophie_Force",
+      "email": "sophie@example.com",
+      "date": "2026-03-18",
+      "time": "09:00",
+      "lieu": "Bordeaux, 33000",
+      "status": "en attente",
+      "description": "Médiation"
+    }
+  ]
+}

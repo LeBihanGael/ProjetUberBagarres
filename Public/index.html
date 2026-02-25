@@ -21,6 +21,7 @@
         <div class="header-right">
             <button id="btn-afficherrdv" class="nav-link">Afficher les rendez-vous</button>
             <button id="btn-login" class="nav-link">Connexion</button>
+            <button id="btn-logout" class="nav-link">Déconnexion</button>
             <button id="btn-register" class="btn-premium">S'inscrire</button>
         </div>
     </header>
@@ -51,46 +52,49 @@
             <h2>Connexion</h2>
             <div id="auth-section">
                 <div id="logged-out-ui">
-                    <input type="text" id="login-iden" placeholder="Login">
+                    <input type="text" id="login-iden" placeholder="Nom d'utilisateur">
                     <input type="password" id="password" placeholder="Mot de passe">
-                    <button id="loginpop">Se connecter</button>
+                    <button id="loginpop" class="btn-premium">Se connecter</button>
                 </div>
-
-            <div id="logged-in-ui" style="display: none;">
-            <button id="logout-btn">Se déconnecter</button>
+                <div id="logged-in-ui" style="display: none;">
+                    <p id="user-display-name"></p>
+                    <button id="logout-btn">Se déconnecter</button>
+                </div>
+            </div>
         </div>
     </div>
 
     <div id="register-modal" class="modal">
         <div class="modal-content">
             <span class="close" data-close="register-modal">&times;</span>
-            <h2>Inscription</h2>
-            <form>
+            <h2>S'inscrire</h2>
+            <form id="register-form">
                 <label>Pseudo</label>
-                <input id="nameregis" type="text" required>
+                <input id="nameregis" type="text" placeholder="Votre pseudo" required>
 
                 <label>Email</label>
-                <input id="emailregis" type="email" required>
+                <input id="emailregis" type="email" placeholder="votre@email.com" required>
 
-                <label>Age</label>
-                <input id="ageregis" type="number" required>
+                <label>Âge</label>
+                <input id="ageregis" type="number" placeholder="Votre âge" required>
 
                 <label>Mot de passe</label>
-                <input id="passwordregis" type="password" required>
+                <input id="passwordregis" type="password" placeholder="Mot de passe sécurisé" required>
 
-                <button type="submit" class="btn-premium" id="registerpop">Créer un compte</button>
+                <button type="button" class="btn-premium" id="registerpop">Créer un compte</button>
             </form>
         </div>
     </div>
 
 
     <div id="afficherrdv-modal" class="modal">
-        <button id="voirrdv">Voir le rendez-vous</button>
-
-        <div id="popup" style="display:none; border: 1px solid #ccc; padding: 20px;">
-        <h3>Détails du RDV</h3>
-        <ul id="rdv-list"></ul>
-        <button onclick="document.getElementById('popup').style.display='none'">Fermer</button>
+        <div class="modal-content">
+            <span class="close" data-close="afficherrdv-modal">&times;</span>
+            <h2>Mes Rendez-vous</h2>
+            <div id="rdv-container">
+                <div id="rdv-list"></div>
+                <p id="no-rdv-message" style="color: var(--text-gray); margin-top: 20px; display: none;">Vous n'avez pas encore de rendez-vous.</p>
+            </div>
         </div>
     </div>
 

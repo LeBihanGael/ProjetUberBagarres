@@ -11,6 +11,54 @@ document.getElementById("btn-register").onclick = () => {
 //Js pour afficher les rendez-vous
 document.getElementById("btn-afficherrdv").onclick = () => {
     document.getElementById("afficherrdv-modal").style.display = "flex";
+    
+    const userId = localStorage.getItem('userId') || '1';
+
+    fetch('data.json', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => response.json())
+    .then(allData => {
+        const rdvList = document.getElementById("rdv-list");
+        const noRdvMessage = document.getElementById("no-rdv-message");
+        
+        rdvList.innerHTML = '';
+        
+        // Récupérer les rdv de l'utilisateur
+        const userRdv = allData[userId] || [];
+        
+        if (userRdv && Array.isArray(userRdv) && userRdv.length > 0) {
+            noRdvMessage.style.display = "none";
+            
+            userRdv.forEach(rdv => {
+                const rdvCard = document.createElement("div");
+                rdvCard.style.cssText = "border: 1px solid #000000; border-radius: 8px; padding: 15px; margin-bottom: 10px; background-color: #000000;";
+                
+                rdvCard.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <div>
+                            <p style="margin: 5px 0; color: #FFD700;"><strong>Pseudo:</strong> ${rdv.pseudo || 'N/A'}</p>
+                            <p style="margin: 5px 0; color: #FFD700;"><strong>Date:</strong> ${rdv.date || 'N/A'}</p>
+                            <p style="margin: 5px 0; color: #FFD700;"><strong>Heure:</strong> ${rdv.time || 'N/A'}</p>
+                            <p style="margin: 5px 0; color: #FFD700;"><strong>Lieu:</strong> ${rdv.lieu || 'N/A'}</p>
+                            <p style="margin: 5px 0; color: #FFD700;"><strong>Email:</strong> ${rdv.email || 'N/A'}</p>
+                            <p style="margin: 5px 0; color: #FFD700;"><strong>Description:</strong> ${rdv.description || 'Aucune description'}</p>
+                            <p style="margin: 5px 0; color: #FFD700;"><strong>Status:</strong> <span style="color: ${rdv.status === 'confirmé' ? '#90EE90' : '#FFA500'}">${rdv.status || 'En attente'}</span></p>
+                        </div>
+                    </div>
+                `;
+                
+                rdvList.appendChild(rdvCard);
+            });
+        } else {
+            noRdvMessage.style.display = "block";
+        }
+    })
+    .catch(error => {
+        console.error('Erreur lors de la récupération des rendez-vous:', error);
+        document.getElementById("no-rdv-message").style.display = "block";
+    });
 };
 
 // Fermer les modals
@@ -27,28 +75,6 @@ window.onclick = (e) => {
     }
 };
 
-
-function updateUI() {
-    const userId = localStorage.getItem('userId');
-    const userPseudo = localStorage.getItem('userpseudo');
-
-    const loggedOutUI = document.getElementById("logged-out-ui");
-    const loggedInUI = document.getElementById("logged-in-ui");
-    const displayName = document.getElementById("user-display-name");
-    const inscripout = document.getElementById("btn-register");
-
-    if (userId) {
-        // Utilisateur connecté
-        loggedOutUI.style.display = "none";
-        loggedInUI.style.display = "block";
-        displayName.textContent = userPseudo;
-        inscripout.style.display = "none";
-    } else {
-        // Utilisateur déconnecté
-        loggedOutUI.style.display = "block";
-        loggedInUI.style.display = "none";
-    }
-}
 
 const loginButton = document.getElementById("loginpop");
 const boutonlog = document.getElementById("btn-login");
@@ -75,15 +101,10 @@ loginButton.addEventListener("click", () => {
     .catch(error => console.error('Erreur:', error));
 });
 
-
-const logoutButton = document.getElementById("logout-btn");
+const logoutButton = document.getElementById("logout");
 logoutButton.addEventListener("click", () => {
     localStorage.removeItem('userId');
     localStorage.removeItem('userpseudo');
-    
-    window.location.href = "index.html"; 
-    
-    updateUI(); 
 });
 
 
@@ -133,61 +154,4 @@ boutonRdv.addEventListener("click", () => {
 });
 
 
-var test = {
-    pseudo: "gael",
-    email: "gael@example.com",
-    date: "2024-06-30",
-    time: "14:00",
-    lieu: "Paris"
-};
-const boutonAffiche = document.getElementById("btn-afficherdv");
-boutonAffiche.addEventListener("click", () => {
-    fetch('/getrdv', {
-    method: 'GET',
-    headers: {
-    'Content-Type': 'application/json'
-    },
-})
-.then(response => response.json()) 
-.then(data => 
-    { const rdvList = document.getElementById("rdv-list"); 
-    rdvList.innerHTML = ""; 
-    data.forEach(rdv => { const listItem = document.createElement("li"); 
-    listItem.textContent = `${rdv.pseudo} - ${rdv.email} - ${rdv.date} ${rdv.time} - ${rdv.lieu}`; 
-    rdvList.appendChild(listItem); }); }) 
-.catch(error => console.error('Error fetching rendez-vous:', error));
-});
 
-
-
-
-
-
-
-
-var test = {
-    pseudo: "gael",
-    email: "gael@example.com",
-    date: "2024-06-30",
-    time: "14:00",
-    lieu: "Paris"
-};
-
-const voirRdvBtn = document.getElementById("voirrdv");
-const popup = document.getElementById("popup"); // On récupère la popup
-const rdvList = document.getElementById("rdv-list");
-
-voirRdvBtn.addEventListener("click", () => {
-    // 1. On vide la liste actuelle
-    rdvList.innerHTML = "";
-
-    // 2. On crée le contenu avec des "Template Literals" (plus propre que les +)
-    const listItem = document.createElement("li");
-    listItem.textContent = `${test.pseudo} - ${test.email} - ${test.date} ${test.time} - ${test.lieu}`;
-    
-    // 3. On ajoute à la liste
-    rdvList.appendChild(listItem);
-
-    // 4. On affiche la popup (si elle était en display: none)
-    popup.style.display = "block";
-});
