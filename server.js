@@ -10,7 +10,7 @@ app.listen(4000, () => {
 
 
 const connection = mysql.createConnection({
-    host: '172.29.18.111',
+    host: '192.168.1.32',
     user: 'jsServer',
     password: 'jsServer',
     database: 'ubercombat'
