@@ -176,7 +176,7 @@ app.get('/rdvdispo', (req, res) => {
     });
 });
 
-// ROUTE POUR CHANGER L'ETAT D'UN RDV
+// ROUTE POUR CHANGER L'ETAT D'UN RDV (ACCEPTER avec un bouton)
 app.post('/changeretat', (req, res) => {
     const { id_rdv, newstate } = req.body;
     connection.query(
@@ -189,6 +189,23 @@ app.post('/changeretat', (req, res) => {
                 return;
             }
             res.json({ message: 'ACCEPTER' });
+        }
+    );
+});
+
+// ROUTE POUR JOINDRE UN USER ET LE RDV Q'IL A ACCEPTÉ
+app.post('/joinrdvaccept', (req, res) => {
+    const { id_user, id_rdv } = req.body;
+    connection.query(
+        'INSERT INTO accept (id_user, id_rdv) VALUES (?, ?)',
+        [id_user, id_rdv],
+        (err, results) => {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ message: 'Erreur serveur' });
+                return;
+            }
+            res.json({ message: "le user :" + id_user + "a accepté le rdv :" + id_rdv + "de :" + results.insertId });
         }
     );
 });
