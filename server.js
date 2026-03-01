@@ -149,7 +149,7 @@ app.post('/joinrdv', (req, res) => {
 });
 
 // ROUTE POUR RECUPERER LES RENDEZ-VOUS D'UN USER
-app.post('/myrdv', (req, res) => {
+app.post('/monrdv', (req, res) => {
     const { id_user } = req.body;
     connection.query(
         'SELECT * FROM appointement JOIN take ON appointement.id_rdv = take.id_rdv WHERE take.id_user = ?',
