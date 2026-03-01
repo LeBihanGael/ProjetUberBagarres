@@ -10,7 +10,7 @@ app.listen(4000, () => {
 
 
 const connection = mysql.createConnection({
-    host: '192.168.1.32',
+    host: '172.20.10.5',
     user: 'jsServer',
     password: 'jsServer',
     database: 'ubercombat'
@@ -98,4 +98,21 @@ app.post('/connexionId', (req, res) => {
             res.status(404).json({ message: 'Utilisateur introuvable' });
         }
     });
+});
+
+// ROUTE POUR PRENDRE UN RENDEZ-VOUS
+app.post('/appointement', (req, res) => {
+    const { place, hour_app, date_ } = req.body;
+    connection.query(
+        'INSERT INTO rdv (place, hour_app, date_) VALUES (?, ?, ?)',
+        [place, hour_app, date_],
+        (err, results) => {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ message: 'Erreur serveur' });
+                return;
+            }
+            res.json({ message: 'Rendez-vous pris avec succès !', id_rdv: results.insertId });
+        }
+    );
 });
