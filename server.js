@@ -147,3 +147,20 @@ app.post('/joinrdv', (req, res) => {
         }
     );
 });
+
+// ROUTE POUR RECUPERER LES RENDEZ-VOUS D'UN USER
+app.post('/myrdv', (req, res) => {
+    const { id_user } = req.body;
+    connection.query(
+        'SELECT * FROM appointement JOIN take ON appointement.id_rdv = take.id_rdv WHERE take.id_user = ?',
+        [id_user],
+        (err, results) => {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ message: 'Erreur serveur' });
+                return;
+            }
+            res.json(results);
+        }
+    );
+});
