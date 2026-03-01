@@ -116,3 +116,17 @@ app.post('/appointement', (req, res) => {
         }
     );
 });
+
+
+// ROUTE POUR RECUPERER LES RENDEZ-VOUS
+
+app.get('/appointement', (req, res) => {
+    connection.query('SELECT * FROM appointement', (err, results) => {
+        if (err) {
+            res.status(500).json({ message: 'Erreur serveur' });
+            return;
+        }
+        res.json(results);
+    });
+});
+
