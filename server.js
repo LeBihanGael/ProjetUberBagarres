@@ -164,3 +164,14 @@ app.post('/monrdv', (req, res) => {
         }
     );
 });
+
+// ROUTE POUR RECUPERER LES RDV AVEC L'ETAT 0
+app.get('/rdvdispo', (req, res) => {
+    connection.query('SELECT * FROM appointement WHERE state = 0', (err, results) => {
+        if (err) {
+            res.status(500).json({ message: 'Erreur serveur' });
+            return;
+        }
+        res.json(results);
+    });
+});
