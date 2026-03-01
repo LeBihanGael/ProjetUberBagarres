@@ -102,10 +102,10 @@ app.post('/connexionId', (req, res) => {
 
 // ROUTE POUR PRENDRE UN RENDEZ-VOUS
 app.post('/appointement', (req, res) => {
-    const { place, hour_app, date_ } = req.body;
+    const {dateInput, timeInput, lieuInput} = req.body;
     connection.query(
-        'INSERT INTO rdv (place, hour_app, date_) VALUES (?, ?, ?)',
-        [place, hour_app, date_],
+        'INSERT INTO appointement (place, hour_app, date_ , state) VALUES (?, ?, ?, ?)',
+        [lieuInput,timeInput,dateInput, 0],
         (err, results) => {
             if (err) {
                 console.error(err);

@@ -145,7 +145,7 @@ boutonRdv.addEventListener("click", () => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ pseudoInput: pseudoInput.value, emailInput: emailInput.value, dateInput: dateInput.value, timeInput: timeInput.value, lieuInput: lieuInput.value })
+        body: JSON.stringify({ pseudoInput: pseudoInput.value, emailInput: emailInput.value, dateInput: dateInput.value, timeInput: timeInput.value, lieuInput: lieuInput.value , state : 0})
     })
     .then(response => response.text())
     .then(data => {
