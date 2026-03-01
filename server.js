@@ -175,3 +175,20 @@ app.get('/rdvdispo', (req, res) => {
         res.json(results);
     });
 });
+
+// ROUTE POUR CHANGER L'ETAT D'UN RDV
+app.post('/changeretat', (req, res) => {
+    const { id_rdv, newstate } = req.body;
+    connection.query(
+        'UPDATE appointement SET state = ? WHERE id_rdv = ?',
+        [newstate, id_rdv],
+        (err, results) => {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ message: 'Erreur serveur' });
+                return;
+            }
+            res.json({ message: 'ACCEPTER' });
+        }
+    );
+});
