@@ -130,3 +130,20 @@ app.get('/appointement', (req, res) => {
     });
 });
 
+// ROUTE POUR JOINDRE UN RENDEZ-VOUS ET UN USER
+
+app.post('/joinrdv', (req, res) => {
+    const { id_user, id_rdv } = req.body;
+    connection.query(
+        'INSERT INTO take (id_user, id_rdv) VALUES (?, ?)',
+        [id_user, id_rdv],
+        (err, results) => {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ message: 'Erreur serveur' });
+                return;
+            }
+            res.json({ message: "c'est good" });
+        }
+    );
+});
