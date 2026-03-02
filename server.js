@@ -209,3 +209,22 @@ app.post('/joinrdvaccept', (req, res) => {
         }
     );
 });
+
+
+// ROUTE POUR RECUPERER LES RDV ACCEPTÉS D'UN USER
+
+app.post('/mesrdvAccept', (req, res) => {
+    const { id_user } = req.body;
+    connection.query(
+        'SELECT * FROM appointement JOIN accept ON appointement.id_rdv = accept.id_rdv WHERE take.id_user = ?',
+        [id_user],
+        (err, results) => {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ message: 'Erreur serveur' });
+                return;
+            }
+            res.json(results);
+        }
+    );
+});
