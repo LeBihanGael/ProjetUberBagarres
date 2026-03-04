@@ -38,7 +38,7 @@
                 Commandez une solution pour vos conflits en quelques clics. <br>
                 Rapide, fiable et d'une discrétion absolue.
             </p>
-            <a href="rdv.html" class="btn-premium large">Prenez rendez vous</a>
+            <button id="btn-creerrdv" class="btn-premium large" onclick="document.getElementById('creerrdv-modal').style.display='flex'">Prenez rendez vous</button>
         </div>
     </main>
 
@@ -55,10 +55,6 @@
                     <input type="text" id="login-iden" placeholder="Nom d'utilisateur">
                     <input type="password" id="password" placeholder="Mot de passe">
                     <button id="loginpop" class="btn-premium">Se connecter</button>
-                </div>
-                <div id="logged-in-ui" style="display: none;">
-                    <p id="user-display-name"></p>
-                    <button id="logout-btn">Se déconnecter</button>
                 </div>
             </div>
         </div>
@@ -95,6 +91,31 @@
                 <div id="rdv-list"></div>
                 <p id="no-rdv-message" style="color: var(--text-gray); margin-top: 20px; display: none;">Vous n'avez pas encore de rendez-vous.</p>
             </div>
+        </div>
+    </div>
+
+    <div id="creerrdv-modal" class="modal">
+        <div class="modal-content modal-rdv">
+            <span class="close" data-close="creerrdv-modal">&times;</span>
+            <h2>Prise de rendez-vous</h2>
+            <form id="rdv-form" class="rdv-form" onsubmit="event.preventDefault();">
+                <div class="form-group">
+                    <label for="rdv-date">Date</label>
+                    <input type="date" id="rdv-date" name="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="rdv-time">Heure</label>
+                    <input type="time" id="rdv-time" name="time" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="rdv-lieu">Lieu</label>
+                    <input type="text" id="rdv-lieu" name="lieu" placeholder="Lieu du rendez-vous" required>
+                </div>
+
+                <button type="submit" class="btn-premium" id="confirmrdv-modal" style="width: 100%; margin-top: 20px;">Confirmer</button>
+            </form>
         </div>
     </div>
 

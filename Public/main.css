@@ -302,6 +302,49 @@ body {
     display: none; /* Changé dynamiquement en 'flex' par le JS */
 }
 
+/* Style pour le formulaire RDV dans la modale */
+.modal-rdv {
+    max-width: 500px;
+}
+
+.rdv-form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.rdv-form .form-group {
+    margin-bottom: 20px;
+}
+
+.rdv-form label {
+    color: var(--gold-solid);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.rdv-form input {
+    background: #222;
+    border: 1px solid #333;
+    padding: 12px 15px;
+    color: white;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.rdv-form input:focus {
+    border-color: var(--gold-solid);
+    outline: none;
+    background: #2a2a2a;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+}
+
 /* Responsive : sur mobile, on réduit l'espacement */
 @media (max-width: 600px) {
     #logged-in-ui {

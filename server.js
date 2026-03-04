@@ -10,7 +10,7 @@ app.listen(4000, () => {
 
 
 const connection = mysql.createConnection({
-    host: '172.20.10.5',
+    host: '172.29.17.76',
     user: 'jsServer',
     password: 'jsServer',
     database: 'ubercombat'
@@ -47,7 +47,7 @@ app.post('/register', (req, res) => {
     const { login, email, password, age } = req.body;
     connection.query(
         'INSERT INTO utilisateur (pseudo, email, password, age) VALUES (?, ?,?, ?)',
-        [ login,email, password ,age],
+        [ login, email, password , age],
         (err, results) => {
             if (err) {
                 console.error(err);
@@ -55,7 +55,6 @@ app.post('/register', (req, res) => {
                 return;
             }
             console.log({ message: 'Inscription réussie !', id_user: results.insertId });
-            
         }
     );
 });
