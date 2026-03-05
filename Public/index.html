@@ -20,6 +20,7 @@
 
         <div class="header-right">
             <button id="btn-afficherrdv" class="nav-link">Afficher les rendez-vous</button>
+            <button id="btn-afficherrdv-acceptes" class="nav-link">Rendez-vous acceptés</button>
             <button id="btn-login" class="nav-link">Connexion</button>
             <button id="btn-logout" class="nav-link">Déconnexion</button>
             <button id="btn-register" class="btn-premium">S'inscrire</button>
@@ -38,7 +39,7 @@
                 Commandez une solution pour vos conflits en quelques clics. <br>
                 Rapide, fiable et d'une discrétion absolue.
             </p>
-            <button id="btn-creerrdv" class="btn-premium large" onclick="document.getElementById('creerrdv-modal').style.display='flex'">Prenez rendez vous</button>
+            <button id="btn-creerrdv" class="btn-premium large">Prenez rendez vous</button>
         </div>
     </main>
 
@@ -86,10 +87,21 @@
     <div id="afficherrdv-modal" class="modal">
         <div class="modal-content">
             <span class="close" data-close="afficherrdv-modal">&times;</span>
-            <h2>Mes Rendez-vous</h2>
+            <h2>Rendez-vous en attente</h2>
             <div id="rdv-container">
                 <div id="rdv-list"></div>
                 <p id="no-rdv-message" style="color: var(--text-gray); margin-top: 20px; display: none;">Vous n'avez pas encore de rendez-vous.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="afficherrdv-acceptes-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-close="afficherrdv-acceptes-modal">&times;</span>
+            <h2>Rendez-vous Acceptés</h2>
+            <div id="rdv-acceptes-container">
+                <div id="rdv-acceptes-list"></div>
+                <p id="no-rdv-acceptes-message" style="color: var(--text-gray); margin-top: 20px; display: none;">Vous n'avez pas de rendez-vous acceptés pour le moment.</p>
             </div>
         </div>
     </div>

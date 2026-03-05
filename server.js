@@ -165,14 +165,19 @@ app.post('/monrdv', (req, res) => {
 });
 
 // ROUTE POUR RECUPERER LES RDV AVEC L'ETAT 0
-app.get('/rdvdispo', (req, res) => {
-    connection.query('SELECT * FROM appointement WHERE state = 0', (err, results) => {
-        if (err) {
-            res.status(500).json({ message: 'Erreur serveur' });
-            return;
+app.post('/rdvdispo', (req, res) => {
+    const { id_user } = req.body;
+    connection.query(
+        'SELECT * FROM appointement WHERE state = 0 AND id_rdv NOT IN (SELECT id_rdv FROM take WHERE id_user = ?) AND id_rdv NOT IN (SELECT id_rdv FROM accept WHERE id_user = ?)',
+        [id_user, id_user],
+        (err, results) => {
+            if (err) {
+                res.status(500).json({ message: 'Erreur serveur' });
+                return;
+            }
+            res.json(results);
         }
-        res.json(results);
-    });
+    );
 });
 
 // ROUTE POUR CHANGER L'ETAT D'UN RDV (ACCEPTER avec un bouton)
@@ -215,7 +220,7 @@ app.post('/joinrdvaccept', (req, res) => {
 app.post('/mesrdvAccept', (req, res) => {
     const { id_user } = req.body;
     connection.query(
-        'SELECT * FROM appointement JOIN accept ON appointement.id_rdv = accept.id_rdv WHERE take.id_user = ?',
+        'SELECT appointement.* FROM appointement JOIN accept ON appointement.id_rdv = accept.id_rdv WHERE accept.id_user = ?',
         [id_user],
         (err, results) => {
             if (err) {
